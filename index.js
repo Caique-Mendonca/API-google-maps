@@ -1,9 +1,9 @@
 function initMap(){
     // Fortalcity
-    const localizacao = { lat: -3.7172, lng: -38.5433};
+    const localizacao = { lat: -3.7683492, lng: -38.4783066};
 
     const map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 13,
+        zoom: 17,
         center: localizacao
     });
 

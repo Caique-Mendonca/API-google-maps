@@ -1,4 +1,37 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 #map{
-    width: 300px;
-    height: 400px;
+    width: 70%;
+    height: 600px;
+}
+section{
+    display: flex;
+    justify-content: center;
+}
+.blocos{
+    width: 30%;
+}
+.blocos div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    border-top: solid 1px gray;
+
+}
+.botao-ver{
+    padding: 5px;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    background-color: #044cf4;
+}
+header{
+    background-color: #044cf4;
+    color: white;
+    text-align: center;
+    padding: 20px;
 }
