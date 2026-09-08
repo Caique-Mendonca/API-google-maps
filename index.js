@@ -31,7 +31,7 @@ document.querySelectorAll(".botao-ver").forEach((botao)=>{
     if (!coordenada) return;
 
     map.setCenter(coordenada);
-    map.setZoom(19);
+    map.setZoom(18);
 
 
     if(marcadorAtual){
