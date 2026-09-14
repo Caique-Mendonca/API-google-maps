@@ -23,10 +23,96 @@ const blocos = {
 
 let map;
 let marcadorAtual;
-document.querySelectorAll(".botao-ver").forEach((botao)=>{
+
+let pontosAdicionados = [];
+
+const inputNome = document.getElementById("nome-form");
+const inputLat = document.getElementById("lat");
+const inputLng = document.getElementById("lng");
+const botaoForm = document.getElementById("botao-form");
+const listaPontosEl = document.querySelector(".lista-pontos");
+
+botaoForm.addEventListener('click', () => {
+  const nome = inputNome.value.trim();
+  const lat = parseFloat(inputLat.value);
+  const lng = parseFloat(inputLng.value);
+
+  if (!nome || isNaN(lat) || isNaN(lng)) {
+    alert("Preencha nome, latitude e longitude corretamente.");
+    return;
+  }
+
+  const coordenadas = {lat, lng};
+
+  const marcador = new google.maps.Marker({
+    position: coordenadas,
+    map: map,
+    title: nome,
+  })
+
+  const ponto = {
+    id: Date.now(),
+    nome,
+    coordenadas,
+    marcador,
+  }
+  pontosAdicionados.push(ponto)
+
+  renderizarListaPontos()
+
+  inputNome.value = "";
+  inputLat.value = "";
+  inputLng.value = "";
+})
+
+function renderizarListaPontos() {
+  listaPontosEl.innerHTML = "";
+
+  pontosAdicionados.forEach((ponto) => {
+    const item = document.createElement("div");
+
+    const nomeEl = document.createElement("p");
+    nomeEl.className = "nome-ponto";
+    nomeEl.textContent = ponto.nome;
+
+    const botoesEl = document.createElement("div");
+
+    const botaoVer = document.createElement("button");
+    botaoVer.className = "botao-ver";
+    botaoVer.textContent = "Ver";
+    botaoVer.addEventListener("click", () => {
+      map.setCenter(ponto.coordenadas);
+      map.setZoom(18);
+
+      if (marcadorAtual) {
+        marcadorAtual.setMap(null);
+      }
+      // reaproveita o marcador já criado do ponto
+      ponto.marcador.setMap(map);
+      marcadorAtual = ponto.marcador;
+    });
+
+    const botaoDeletar = document.createElement("button");
+    botaoDeletar.className = "botao-deletar";
+    botaoDeletar.textContent = "Deletar";
+    botaoDeletar.addEventListener("click", () => {
+      ponto.marcador.setMap(null);
+      pontosAdicionados = pontosAdicionados.filter((p) => p.id !== ponto.id);
+      renderizarListaPontos();
+    });
+
+    botoesEl.appendChild(botaoVer);
+    botoesEl.appendChild(botaoDeletar);
+    item.appendChild(nomeEl);
+    item.appendChild(botoesEl);
+    listaPontosEl.appendChild(item);
+  });
+}
+
+document.querySelectorAll(".blocos .botao-ver").forEach((botao)=>{
   botao.addEventListener("click", ()=>{
     const nomeBloco = botao.dataset.bloco;
-    const coordenada = blocos[nomeBloco]
+    const coordenada = blocos[nomeBloco];
     
     if (!coordenada) return;
 
@@ -36,7 +122,7 @@ document.querySelectorAll(".botao-ver").forEach((botao)=>{
 
     if(marcadorAtual){
       marcadorAtual.setMap(null);
-    }
+    };
 
     marcadorAtual = new google.maps.Marker({
       position: coordenada,

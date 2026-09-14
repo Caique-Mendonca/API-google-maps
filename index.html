@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,9 +8,25 @@
 </head>
 <body>
     <header>
-        <h1>Mapa dos blocos da unifor</h1>
+        <h1>Mapa Interativo: Encontre os Pontos Escondidos!</h1>
     </header>
     <section>
+        <div class="form-coords">
+            <form action="get" >
+                <label for="nome-form">Nome:</label>
+                <input type="text" id="nome-form">
+                <label for="lat">Latitude: </label>
+                <input type="text" id="lat">
+                <label for="lng">Longitude: </label>
+                <input type="text" id="lng">
+                <input type="button" value="Adicionar" id="botao-form">
+            </form>
+        </div>
+        <div class="lista-pontos">
+            <!-- <div><p class="nome-ponto">Ponto adicionado</p> <div><button class="botao-ver">Ver</button> <button class="botao-deletar">Deletar</button></div></div>
+            <div><p class="nome-ponto">Ponto adicionado</p> <div><button class="botao-ver">Ver</button> <button class="botao-deletar">Deletar</button></div></div> -->
+
+        </div>
         <div id="map"></div>
         <div class="blocos">
             <div><p>Bloco A</p> <button class="botao-ver" type="button" data-bloco="A" >Ver</button></div>

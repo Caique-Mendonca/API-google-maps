@@ -4,12 +4,10 @@
     box-sizing: border-box;
 }
 #map{
-    width: 70%;
+    width: 100%;
     height: 600px;
 }
 section{
-    display: flex;
-    justify-content: center;
 }
 .blocos{
     width: 30%;
@@ -34,4 +32,28 @@ header{
     color: white;
     text-align: center;
     padding: 20px;
+}
+.form-coords{
+    padding: 10px;
+}
+#botao-form{
+    background-color: #044cf4;
+    color: white;
+    border: none;
+    padding: 4px;
+    border-radius: 5px;
+}
+.lista-pontos > div{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-top: solid 1px gray;
+}
+.botao-deletar{
+    padding: 5px;
+    border: none;
+    border-radius: 6px;
+    background-color: red;
+    color: white;
+
 }
